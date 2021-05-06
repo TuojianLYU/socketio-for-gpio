@@ -16,7 +16,11 @@ app.get("/", (req, res) => {
     res.render("home");
 })
 
-server.listen(3000, () => {
+app.get("/test", (req, res) => {
+    res.render("bstest")
+})
+
+server.listen(80, () => {
     console.log("Server is running");
 })
 
