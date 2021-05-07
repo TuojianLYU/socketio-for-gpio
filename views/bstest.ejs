@@ -59,12 +59,15 @@
 
             socket.on("message", (data) => {
                 document.querySelector("p").innerHTML = data;
-                if (data == "1") {
+		//console.log(data);
+		//console.log(typeOf(data));
+                if (data == 1) {
                     document.getElementById("led").style.backgroundColor =
                         "red";
-                } else {
+                } 
+		if(data == 0) {
                     document.getElementById("led").style.backgroundColor =
-                        "blue";
+                        "grey";
                 }
             });
 

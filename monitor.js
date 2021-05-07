@@ -2,26 +2,22 @@ const io = require("socket.io-client");
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require("fs");
 
-const socket = io("http://localhost:3000");
+const socket = io("http://35.228.251.153/");
 socket.on("connection");
-
-let count = 1;
 
 setInterval(function () {
 
-    fs.readFile("/Users/tuojianlyu/VSCodeProjects/temp/socketio-test/hello.txt", function (err, data) {
+    fs.readFile("/sys/class/gpio/gpio3/value", function (err, data) {
         if (err) {
             throw err;
         }
         console.log(data.toString());
-        socket.emit("log", "fake log message: " + data.toString() + " " + count);
-        count++;
+	socket.emit("log", data.toString());
     });
 
 }, 1000);
 
-
-// socket.emit("log", "fake log message " + count);
+socket.emit("log", "test messge");
 
 function loadFile(filePath) {
     var result = null;
