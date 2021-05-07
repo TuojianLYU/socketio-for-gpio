@@ -1,23 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
-    </head>
-    <body>
-        <input type="text" class="message" />
-        <button onclick="sendMessage()">Send Message</button>
-        <h1></h1>
+<%- include("./includes/header.ejs") %> 
+    <body id="grad1">
+        <%- include("./includes/nav.ejs") %>
+
+        <div class="container my-5">
+            <div class="row align-items-center">
+                <div class="col" align="center">
+                    <p class="text-primary">
+                        The circle in the middle indicates the virtual LED that
+                        can be controlled via the virtual Button on the right
+                        side. The pin of the cirtual LED is 8 and the pin of the
+                        virutal Button is 2. The LED works if the button gives
+                        hight voltage to its pin 2, vice versa. Notes: before
+                        click the button, remember to deploy your 4diac
+                        application first.
+                    </p>
+                </div>
+                <div class="col" align="center">
+                    <span class="led" id="led"></span>
+                    <p>Virtual LED</p>
+                </div>
+                <div class="col" align="center">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="sendMessage()"
+                    >
+                        Button
+                    </button>
+                    <p>Use the button to start and stop the LED</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-sm my-5">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col col-lg-5">
+                    <form action="/" method="post">
+                        <div class="mb-3">
+                            <label for="dockerCommand" class="form-label"
+                                >Docker Command</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="dockerCommand"
+                                name="cmd"
+                            />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Create
+                        </button>
+                    </form>
+                </div>
+                <div class="col col-lg-5">
+                    <div class="ex1">
+                        <p id="terminalLog">
+                            Terminal Log: <%= terminalLog %> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
-            const socket = io("http://35.228.251.153");
+            const socket = io("http://35.228.251.153/");
             socket.on("connection");
 
-            socket.on("message", (data) => {
-                document.querySelector("h1").innerHTML = data;
+            socket.on("led", (data) => {
+                if (data == 1) {
+                    document.getElementById("led").style.backgroundColor =
+                        "red";
+                }
+                if (data == 0) {
+                    document.getElementById("led").style.backgroundColor =
+                        "grey";
+                }
             });
+            let message = 0;
             const sendMessage = () => {
-                const messageInput = document.querySelector(".message");
-                const message = messageInput.value;
-                socket.emit("message", message);
+                message = (message + 1) % 2;
+                socket.emit("button", message);
             };
         </script>
     </body>

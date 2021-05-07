@@ -1,23 +1,33 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
-app.set("view engine", "ejs");
-app.set("views", "views");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, { cors: { origin: "*" } });
+const exec = require('child_process').exec;
+const { stdout } = require('process');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", "views");
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+let terminalLog = "";
+
 app.get("/", (req, res) => {
-    res.render("bstest");
+    res.render("home", { terminalLog: terminalLog });
 })
 
-app.get("/test", (req, res) => {
-    res.render("bstest")
+app.post("/", (req, res) => {
+    const cmd = req.body.cmd;
+
+    exec(cmd, function (err, stdout, stderr) {
+        console.log(stdout);
+        terminalLog = stdout;
+    });
+    res.redirect("/");
 })
 
 server.listen(80, () => {

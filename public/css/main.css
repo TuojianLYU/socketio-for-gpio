@@ -1,0 +1,16 @@
+.led {
+    height: 250px;
+    width: 250px;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+}
+#grad1 {
+    background-image: linear-gradient(285deg, #f5eaf3, #dee6f0 80%);
+}
+div.ex1 {
+    background-color: lightblue;
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+}
