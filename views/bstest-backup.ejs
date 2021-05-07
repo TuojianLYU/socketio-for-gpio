@@ -25,38 +25,30 @@
                 display: inline-block;
                 margin: 5rem;
             }
-            #grad1 {
-                background-image:linear-gradient(285deg,#f5eaf3,#dee6f0 80%);
+            .ctr_btn {
+                height: 250px;
+                width: 250px;
+                background-color: greenyellow;
+                border-radius: 50%;
+                display: inline-block;
+                margin: 5rem;
             }
         </style>
         <title>Virtual LED</title>
     </head>
-    <body id="grad1">
+    <body>
         <%- include("./includes/nav.ejs") %>
 
-        <div class="container my-5">
-            <div class="row align-items-center">
-                <div class="col" align="center">
-                    <p class="text-primary">
-                        The circle in the middle indicates the virtual LED that can be controlled via the virtual Button
-                        on the right side. The pin of the cirtual LED is 8 and the pin of the virutal Button is 2. The LED works
-                        if the button gives hight voltage to its pin 2, vice versa. Notes: before click the button, remember to 
-                        deploy your 4diac application first.
-                    </p>
+        <div class="container my-3">
+            <div class="row">
+                <div class="col">
+                    <p class="text-primary">.text-primary</p>
                 </div>
-                <div class="col" align="center">
+                <div class="col">
                     <span class="led" id="led"></span>
-                    <p>Virtual LED</p>
                 </div>
-                <div class="col" align="center">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="sendMessage()"
-                    >
-                        Button
-                    </button>
-                    <p>Use the button to start and stop the LED</p>
+                <div class="col">
+                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Button</button>
                 </div>
             </div>
         </div>
@@ -66,7 +58,9 @@
             socket.on("connection");
 
             socket.on("led", (data) => {
-
+                document.querySelector("p").innerHTML = data;
+		//console.log(data);
+		//console.log(typeOf(data));
                 if (data == 1) {
                     document.getElementById("led").style.backgroundColor =
                         "red";

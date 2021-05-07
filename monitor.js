@@ -7,17 +7,26 @@ socket.on("connection");
 
 setInterval(function () {
 
-    fs.readFile("/sys/class/gpio/gpio3/value", function (err, data) {
+    fs.readFile("/sys/class/gpio/gpio8/value", function (err, data) {
         if (err) {
             throw err;
         }
         console.log(data.toString());
-	socket.emit("log", data.toString());
+	socket.emit("led", data.toString());
     });
 
 }, 1000);
 
-socket.emit("log", "test messge");
+const buttonPath = "/sys/class/gpio/gpio2/value"
+socket.on("button", (data) => {
+    fs.writeFile(buttonPath, data, function(error) {
+        if (error) {
+          console.error("write error:  " + error.message);
+        } else {
+          console.log("Successful Write to " + buttonPath);
+        }
+   });
+});
 
 function loadFile(filePath) {
     var result = null;

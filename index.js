@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("bstest");
 })
 
 app.get("/test", (req, res) => {
@@ -27,11 +27,11 @@ server.listen(80, () => {
 io.on("connection", (socket) => {
     console.log("User connected: " + socket.id);
 
-    socket.on("message", (data) => {
-        socket.broadcast.emit("message", data);
+    socket.on("button", (data) => {
+        socket.broadcast.emit("button", data);
     });
 
-    socket.on("log", (data) => {
-        socket.broadcast.emit("message", data);
+    socket.on("led", (data) => {
+        socket.broadcast.emit("led", data);
     });
 });
