@@ -15,9 +15,10 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 let terminalLog = "";
+let containerList = "";
 
 app.get("/", (req, res) => {
-    res.render("home", { terminalLog: terminalLog });
+    res.render("home", { terminalLog: terminalLog, containerList: containerList });
 })
 
 app.post("/", (req, res) => {
@@ -26,11 +27,18 @@ app.post("/", (req, res) => {
     exec(cmd, function (err, stdout, stderr) {
         console.log(stdout);
         terminalLog = stdout;
+        exec(`docker ps --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}'`, function (err, stdout, stderr) {
+            console.log(stdout);
+            containerList = stdout;
+            res.redirect("/");
+        });
+        // res.redirect("/");
     });
-    res.redirect("/");
+    
 })
 
 server.listen(80, () => {
+// server.listen(3000, () => {
     console.log("Server is running");
 })
 

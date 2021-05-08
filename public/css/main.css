@@ -9,8 +9,21 @@
     background-image: linear-gradient(285deg, #f5eaf3, #dee6f0 80%);
 }
 div.ex1 {
-    background-color: lightblue;
+    background-color: black;
     width: 500px;
     height: 300px;
     overflow: scroll;
 }
+.terminal {
+    color: white;
+    background-color: black;
+}
+.hero-margin {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+.hero-title {
+    padding-left: -100px;
+}
+
+

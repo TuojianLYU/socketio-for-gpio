@@ -2,39 +2,64 @@
     <body id="grad1">
         <%- include("./includes/nav.ejs") %>
 
-        <div class="container my-5">
+        <div class="container hero-margin">
             <div class="row align-items-center">
                 <div class="col" align="center">
-                    <p class="text-primary">
-                        The circle in the middle indicates the virtual LED that
-                        can be controlled via the virtual Button on the right
-                        side. The pin of the cirtual LED is 8 and the pin of the
-                        virutal Button is 2. The LED works if the button gives
-                        hight voltage to its pin 2, vice versa. Notes: before
-                        click the button, remember to deploy your 4diac
-                        application first.
-                    </p>
+                    <h1 class="text-primary">
+                        Welcome to the Online Simulation Platform for Your 4diac-based Blinking-LED Control Applications!
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <hr class="rounded">
+
+        <div class="container-sm my-5">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col" align="left">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Instruction 1</div>
+                        <div class="card-body">
+                          <h5 class="card-title">Virtual LED and Button</h5>
+                          <p class="card-text">
+                              The button can be clicked to control the LED to start and stop. When the LED works, its color 
+                              will turn to red.
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col" align="center">
+                    <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="sendMessage()">
+                        Button
+                    </button>
+                    <p>Use the button to start and stop the LED</p>
                 </div>
                 <div class="col" align="center">
                     <span class="led" id="led"></span>
                     <p>Virtual LED</p>
                 </div>
-                <div class="col" align="center">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        onclick="sendMessage()"
-                    >
-                        Button
-                    </button>
-                    <p>Use the button to start and stop the LED</p>
-                </div>
             </div>
         </div>
 
-        <div class="container-sm my-5">
+        <hr class="rounded">
+
+        <div class="container my-5">
             <div class="row justify-content-md-center align-items-center">
-                <div class="col col-lg-5">
+                <div class="col" align="left">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Instruction 2</div>
+                        <div class="card-body">
+                          <h5 class="card-title">Container Creation</h5>
+                          <p class="card-text">
+                              Input your docker command to create the Forte containers that you created via docker images.
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col">
                     <form action="/" method="post">
                         <div class="mb-3">
                             <label for="dockerCommand" class="form-label"
@@ -47,24 +72,48 @@
                                 name="cmd"
                             />
                         </div>
-
                         <button type="submit" class="btn btn-primary">
                             Create
                         </button>
                     </form>
                 </div>
-                <div class="col col-lg-5">
+                <div class="col">
+        
                     <div class="ex1">
-                        <p id="terminalLog">
+                        <p id="terminalLog" class="terminal">
                             Terminal Log: <%= terminalLog %> 
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
 
+        <hr class="rounded">
+
+        <div class="container">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <div class="ex1">
+                        <p id="containerList" class="terminal">
+                            Current Running Containers: <%= containerList %> 
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+        </div>
+
+        <%- include("./includes/footer.ejs") %> 
+
         <script>
             const socket = io("http://35.228.251.153/");
+            // const socket = io("http://localhost:3000");
             socket.on("connection");
 
             socket.on("led", (data) => {
