@@ -33,9 +33,7 @@ app.post("/", (req, res) => {
             res.redirect("/");
         });
         // res.redirect("/");
-        //test
     });
-    
 })
 
 server.listen(80, () => {
@@ -46,11 +44,12 @@ server.listen(80, () => {
 io.on("connection", (socket) => {
     console.log("User connected: " + socket.id);
 
-    socket.on("button", (data) => {
-        socket.broadcast.emit("button", data);
+    socket.on("button", (user, data) => {
+        console.log(user)
+        io.emit("button" + user, data);
     });
 
-    socket.on("led", (data) => {
-        socket.broadcast.emit("led", data);
+    socket.on("led", (user, data) => {
+        io.emit("led" + user, data);
     });
 });

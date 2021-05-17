@@ -14,6 +14,39 @@
 
         <hr class="rounded">
 
+        <div class="container my-5">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col">
+                    <form action="" id="userForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label"
+                                >Input Your Username Here!</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="userInput"
+                                name="username"
+                            />
+                        </div>
+                        <button class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+                <div class="col">
+                    <h1>Username: </h1>
+                    <h1 id="username"></h1>
+                </div>
+                <div class="col">
+                    <h1 id="result">To be replaced</h1>
+                </div>
+                
+            </div>
+        </div>
+
+        <hr class="rounded">
+
         <div class="container-sm my-5">
             <div class="row justify-content-md-center align-items-center">
                 <div class="col" align="left">
@@ -112,9 +145,12 @@
         <%- include("./includes/footer.ejs") %> 
 
         <script>
-            const socket = io("http://35.228.251.153/");
+            const socket = io("http://35.228.36.148/");
             // const socket = io("http://localhost:3000");
             socket.on("connection");
+
+            let result = document.getElementById("result");
+            let user = "";
 
             socket.on("led", (data) => {
                 if (data == 1) {
@@ -129,8 +165,21 @@
             let message = 0;
             const sendMessage = () => {
                 message = (message + 1) % 2;
-                socket.emit("button", message);
+                socket.emit("button", user, message);
             };
+
+            //=================test===================
+            userForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                if (userInput.value) {
+                    user = userInput.value;
+                    document.getElementById("username").innerHTML = user;
+                    socket.on("led" + user, function (msg) {
+                        result.innerHTML = msg;
+                    });
+                    userInput.value = "";
+                }
+            });
         </script>
     </body>
 </html>
