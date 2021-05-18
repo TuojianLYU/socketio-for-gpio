@@ -2,7 +2,7 @@ const io = require("socket.io-client");
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var fs = require("fs");
 
-const socket = io("http://35.228.36.148/");
+const socket = io("http://35.228.43.127/");
 // const socket = io("http://localhost:3000/");
 socket.on("connection");
 
@@ -14,20 +14,23 @@ let buttonPath = "/sys/class/gpio/gpio2/value";
 const args = process.argv.slice(2);
 console.log(args[0]);
 let username = args[0];
+let value;
 
 setInterval(function () {
     fs.readFile(ledPath, function (err, data) {
         if (err) {
             throw err;
         }
-        // console.log(data.toString());
-        socket.emit("led", username, data.toString());
+        if (value != data) {
+            value = data;
+            socket.emit("led", username, data.toString());
+        }
     });
 
-}, 1000);
+}, 10);
 
 socket.on("button" + username, (data) => {
-    fs.writeFile(buttonPath, "data", function (error) {
+    fs.writeFile(buttonPath, data, function (error) {
         if (error) {
             console.error("write error:  " + error.message);
         } else {

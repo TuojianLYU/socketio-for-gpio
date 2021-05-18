@@ -34,14 +34,106 @@
                         </button>
                     </form>
                 </div>
-                <div class="col">
+                <div class="col" align="center">
                     <h1>Username: </h1>
                     <h1 id="username"></h1>
                 </div>
-                <div class="col">
+                <div class="col" align="center">
                     <h1 id="result">To be replaced</h1>
                 </div>
                 
+            </div>
+        </div>
+
+        <hr class="rounded">
+
+        <div class="container my-5">
+            <div class="row justify-content-md-center align-items-center">
+                <div class="col" align="left">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Instruction 1</div>
+                        <div class="card-body">
+                          <h5 class="card-title">Container Creation</h5>
+                          <p class="card-text">
+                              Input your docker command to create the Forte containers that you created via docker images.
+                          </p>
+                        </div>
+                      </div>
+                </div>
+                <div class="col">
+                    <form action="/" method="post">
+                        <div class="mb-5">
+                            <label for="dockerCommand" class="form-label"
+                                >Docker Image</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="dockerCommand"
+                                name="image"
+                            />
+                            <label for="port" class="form-label"
+                                >Port</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="port"
+                                name="port"
+                            />
+                            <label for="name" class="form-label"
+                                >Container Name</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                            />
+                            <label for="node-name" class="form-label"
+                                >Computing Node Name</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="node-name"
+                                name="node"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Create
+                        </button>
+                    </form>
+                </div>
+      
+                <div class="col" >
+                    <!-- <div class="ex1">
+                        <p id="containerList" class="terminal">
+                            Current Running Containers heihei:
+                        </p>
+                    </div> -->
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Node</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < containerList.length; i++) {%>
+                                <tr>
+                                    <th scope="row"> <%= i+1 %> </th>
+                                    <td> <%= containerList[i].Name %> </td>
+                                    <td> <%= containerList[i].Image %> </td>
+                                    <td> <%= containerList[i].Node %> </td>
+                                </tr>
+                            <% } %>  
+                        </tbody>
+                      </table>
+                </div>
+
             </div>
         </div>
 
@@ -51,7 +143,7 @@
             <div class="row justify-content-md-center align-items-center">
                 <div class="col" align="left">
                     <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Instruction 1</div>
+                        <div class="card-header">Instruction 2</div>
                         <div class="card-body">
                           <h5 class="card-title">Virtual LED and Button</h5>
                           <p class="card-text">
@@ -71,64 +163,15 @@
                     <p>Use the button to start and stop the LED</p>
                 </div>
                 <div class="col" align="center">
-                    <span class="led" id="led"></span>
-                    <p>Virtual LED</p>
+                    <img id="led-image" src="images/led-off.jpg" alt="LED Off" width="300">
                 </div>
             </div>
         </div>
 
-        <hr class="rounded">
-
-        <div class="container my-5">
-            <div class="row justify-content-md-center align-items-center">
-                <div class="col" align="left">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Instruction 2</div>
-                        <div class="card-body">
-                          <h5 class="card-title">Container Creation</h5>
-                          <p class="card-text">
-                              Input your docker command to create the Forte containers that you created via docker images.
-                          </p>
-                        </div>
-                      </div>
-                </div>
-                <div class="col">
-                    <form action="/" method="post">
-                        <div class="mb-3">
-                            <label for="dockerCommand" class="form-label"
-                                >Docker Command</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="dockerCommand"
-                                name="cmd"
-                            />
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            Create
-                        </button>
-                    </form>
-                </div>
-                <div class="col">
-        
-                    <div class="ex1">
-                        <p id="terminalLog" class="terminal">
-                            Terminal Log: <%= terminalLog %> 
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <hr class="rounded">
+        <!-- <hr class="rounded">
 
         <div class="container">
             <div class="row justify-content-md-center align-items-center">
-                <div class="col">
-
-                </div>
                 <div class="col">
                     <div class="ex1">
                         <p id="containerList" class="terminal">
@@ -140,46 +183,11 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <%- include("./includes/footer.ejs") %> 
 
-        <script>
-            const socket = io("http://35.228.36.148/");
-            // const socket = io("http://localhost:3000");
-            socket.on("connection");
-
-            let result = document.getElementById("result");
-            let user = "";
-
-            socket.on("led", (data) => {
-                if (data == 1) {
-                    document.getElementById("led").style.backgroundColor =
-                        "red";
-                }
-                if (data == 0) {
-                    document.getElementById("led").style.backgroundColor =
-                        "grey";
-                }
-            });
-            let message = 0;
-            const sendMessage = () => {
-                message = (message + 1) % 2;
-                socket.emit("button", user, message);
-            };
-
-            //=================test===================
-            userForm.addEventListener("submit", function (e) {
-                e.preventDefault();
-                if (userInput.value) {
-                    user = userInput.value;
-                    document.getElementById("username").innerHTML = user;
-                    socket.on("led" + user, function (msg) {
-                        result.innerHTML = msg;
-                    });
-                    userInput.value = "";
-                }
-            });
+        <script src="home.js">
         </script>
     </body>
 </html>
