@@ -1,5 +1,5 @@
-const socket = io("http://35.228.43.127/");
-// const socket = io("http://localhost:3000");
+// const socket = io("http://35.228.43.127/");
+const socket = io("http://localhost:3000");
 socket.on("connection");
 
 let result = document.getElementById("result");
@@ -11,7 +11,7 @@ const sendMessage = () => {
     socket.emit("button", user, message);
 };
 
-//=================test===================
+//=======================================
 userForm.addEventListener("submit", function (e) {
     e.preventDefault();
     if (userInput.value) {
@@ -28,4 +28,19 @@ userForm.addEventListener("submit", function (e) {
         });
         userInput.value = "";
     }
+});
+
+//=================test===================
+cmdForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let image = imageInput.value;
+    let port = portInput.value;
+    let name = nameInput.value;
+    let node = nodeInput.value;
+
+    let cmd = "docker run -d --privileged -p " + port + ":" + port + " " +
+        "--name " + name + " " + image;
+
+    socket.emit("container", node, cmd);
 });

@@ -93,8 +93,8 @@ app.post("/", (req, res) => {
     });
 })
 
-server.listen(80, () => {
-// server.listen(3000, () => {
+// server.listen(80, () => {
+server.listen(3000, () => {
     console.log("Server is running");
 })
 
@@ -109,4 +109,9 @@ io.on("connection", (socket) => {
     socket.on("led", (user, data) => {
         io.emit("led" + user, data);
     });
+
+    socket.on("container", (node, cmd) => {
+        console.log(cmd);
+        io.emit("container" + node, cmd);
+    })
 });

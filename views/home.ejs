@@ -61,7 +61,50 @@
                       </div>
                 </div>
                 <div class="col">
-                    <form action="/" method="post">
+                    <form action="" id="cmdForm">
+                        <div class="mb-5">
+                            <label for="dockerCommand" class="form-label"
+                                >Docker Image</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="imageInput"
+                                name="image"
+                            />
+                            <label for="port" class="form-label"
+                                >Port</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="portInput"
+                                name="port"
+                            />
+                            <label for="name" class="form-label"
+                                >Container Name</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nameInput"
+                                name="name"
+                            />
+                            <label for="node-name" class="form-label"
+                                >Computing Node Name</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nodeInput"
+                                name="node"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Create
+                        </button>
+                    </form>
+                    <!-- <form action="/" method="post">
                         <div class="mb-5">
                             <label for="dockerCommand" class="form-label"
                                 >Docker Image</label
@@ -103,7 +146,7 @@
                         <button type="submit" class="btn btn-primary">
                             Create
                         </button>
-                    </form>
+                    </form> -->
                 </div>
       
                 <div class="col" >
