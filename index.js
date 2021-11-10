@@ -29,7 +29,6 @@ app.post("/", (req, res) => {
     const name = req.body.name;
     const node = req.body.node;
 
-
     let cmd = "docker run -d --name " + name + " " + image + " " + "0.0.0.0:" + port;
     let testCmd = "docker service create -d --name " + name + " -p " + port + ":" + port + " --constraint node.hostname=="
         + node + " " + image + " " + "0.0.0.0:" + port;
@@ -111,7 +110,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("container", (node, cmd) => {
-        console.log(cmd);
+        console.log(cmd + " cmd is received successfully by the server");
         io.emit("container" + node, cmd);
     })
 });

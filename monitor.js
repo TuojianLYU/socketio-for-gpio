@@ -33,8 +33,8 @@ setInterval(function () {
     fs.readFile(ledPath, function (err, data) {
         if (err) {
             //throw err;
-        } else if(value != data) {
-                socket.emit("led", username, data.toString());
+        } else if (value != data) {
+            socket.emit("led", username, data.toString());
         }
         // console.log(data.toString());
         //socket.emit("led", username, data.toString());
@@ -46,7 +46,7 @@ setInterval(function () {
 
 socket.on("button" + username, (data) => {
 
-        fs.writeFile(buttonPath, data, function (error) {
+    fs.writeFile(buttonPath, data, function (error) {
         if (error) {
             console.error("write error:  " + error.message);
         } else {
@@ -60,6 +60,6 @@ socket.on("container" + node, (cmd) => {
     // console.log("The image is received successfully: " + image);
     // let cmd = "docker run -d -p " + port + ":" + port + " " +
     //     "--name " + name + " " + image;
-    console.log(cmd);
+    console.log(cmd + " is executed successfully");
     exec(cmd, function (err, stdout, stderr) { });
 })

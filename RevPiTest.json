@@ -1,0 +1,448 @@
+{
+    "System": {
+        "@_Name": "AutoGenOpcUa2",
+        "@_Comment": "",
+        "VersionInfo": {
+            "@_Version": "1.0",
+            "@_Author": "tuojianlyu",
+            "@_Date": "2021-09-07"
+        },
+        "Application": {
+            "@_Name": "AutoGenOpcUaApp",
+            "@_Comment": "",
+            "SubAppNetwork": {
+                "FB": [
+                    {
+                        "@_Name": "Button",
+                        "@_Type": "IX",
+                        "@_Comment": "",
+                        "@_x": "893.3333333333334",
+                        "@_y": "400.0",
+                        "Parameter": {
+                            "@_Name": "QI",
+                            "@_Value": "1"
+                        }
+                    },
+                    {
+                        "@_Name": "E_SWITCH_2",
+                        "@_Type": "E_SWITCH",
+                        "@_Comment": "",
+                        "@_x": "2400.0",
+                        "@_y": "653.3333333333334"
+                    },
+                    {
+                        "@_Name": "E_SR_2",
+                        "@_Type": "E_SR",
+                        "@_Comment": "",
+                        "@_x": "3520.0",
+                        "@_y": "653.3333333333334"
+                    },
+                    {
+                        "@_Name": "LED_RED",
+                        "@_Type": "QX",
+                        "@_Comment": "",
+                        "@_x": "5100.0",
+                        "@_y": "400.0",
+                        "Parameter": {
+                            "@_Name": "QI",
+                            "@_Value": "1"
+                        }
+                    },
+                    {
+                        "@_Name": "LED_RED_1",
+                        "@_Type": "QX",
+                        "@_Comment": "",
+                        "@_x": "5140.0",
+                        "@_y": "3066.666666666667",
+                        "Parameter": {
+                            "@_Name": "QI",
+                            "@_Value": "1"
+                        }
+                    },
+                    {
+                        "@_Name": "E_SWITCH_3",
+                        "@_Type": "E_SWITCH",
+                        "@_Comment": "",
+                        "@_x": "2440.0",
+                        "@_y": "3320.0"
+                    },
+                    {
+                        "@_Name": "Button_1",
+                        "@_Type": "IX",
+                        "@_Comment": "",
+                        "@_x": "933.3333333333334",
+                        "@_y": "3066.666666666667",
+                        "Parameter": {
+                            "@_Name": "QI",
+                            "@_Value": "1"
+                        }
+                    },
+                    {
+                        "@_Name": "E_SR_3",
+                        "@_Type": "E_SR",
+                        "@_Comment": "",
+                        "@_x": "3560.0",
+                        "@_y": "3320.0"
+                    }
+                ],
+                "EventConnections": {
+                    "Connection": [
+                        {
+                            "@_Source": "E_SWITCH_2.EO0",
+                            "@_Destination": "E_SR_2.S",
+                            "@_Comment": ""
+                        },
+                        {
+                            "@_Source": "E_SR_2.EO",
+                            "@_Destination": "LED_RED.REQ",
+                            "@_Comment": "",
+                            "@_dx1": "360.0"
+                        },
+                        {
+                            "@_Source": "E_SWITCH_2.EO1",
+                            "@_Destination": "E_SR_2.R",
+                            "@_Comment": ""
+                        },
+                        {
+                            "@_Source": "Button.IND",
+                            "@_Destination": "E_SWITCH_2.EI",
+                            "@_Comment": "",
+                            "@_dx1": "360.0"
+                        },
+                        {
+                            "@_Source": "Button.INITO",
+                            "@_Destination": "LED_RED.INIT",
+                            "@_Comment": ""
+                        },
+                        {
+                            "@_Source": "E_SWITCH_3.EO1",
+                            "@_Destination": "E_SR_3.R",
+                            "@_Comment": ""
+                        },
+                        {
+                            "@_Source": "Button_1.INITO",
+                            "@_Destination": "LED_RED_1.INIT",
+                            "@_Comment": ""
+                        },
+                        {
+                            "@_Source": "Button_1.IND",
+                            "@_Destination": "E_SWITCH_3.EI",
+                            "@_Comment": "",
+                            "@_dx1": "360.0",
+                            "@_dx2": "360.0",
+                            "@_dy": "0.0"
+                        },
+                        {
+                            "@_Source": "E_SR_3.EO",
+                            "@_Destination": "LED_RED_1.REQ",
+                            "@_Comment": "",
+                            "@_dx1": "360.0",
+                            "@_dx2": "360.0",
+                            "@_dy": "0.0"
+                        },
+                        {
+                            "@_Source": "E_SWITCH_3.EO0",
+                            "@_Destination": "E_SR_3.S",
+                            "@_Comment": ""
+                        }
+                    ]
+                },
+                "DataConnections": {
+                    "Connection": [
+                        {
+                            "@_Source": "E_SR_2.Q",
+                            "@_Destination": "E_SWITCH_2.G",
+                            "@_Comment": "",
+                            "@_dx1": "360.0",
+                            "@_dx2": "340.0",
+                            "@_dy": "166.66666666666669"
+                        },
+                        {
+                            "@_Source": "E_SR_2.Q",
+                            "@_Destination": "LED_RED.OUT",
+                            "@_Comment": "",
+                            "@_dx1": "426.6666666666667"
+                        },
+                        {
+                            "@_Source": "E_SR_3.Q",
+                            "@_Destination": "LED_RED_1.OUT",
+                            "@_Comment": "",
+                            "@_dx1": "426.6666666666667",
+                            "@_dx2": "426.6666666666667",
+                            "@_dy": "0.0"
+                        },
+                        {
+                            "@_Source": "E_SR_3.Q",
+                            "@_Destination": "E_SWITCH_3.G",
+                            "@_Comment": "",
+                            "@_dx1": "360.0",
+                            "@_dx2": "360.0",
+                            "@_dy": "166.66666666666669"
+                        }
+                    ]
+                }
+            }
+        },
+        "Device": {
+            "@_Name": "FORTE_PC",
+            "@_Type": "FORTE_PC",
+            "@_Comment": "",
+            "@_x": "3446.666666666667",
+            "@_y": "1446.6666666666667",
+            "Parameter": {
+                "@_Name": "MGR_ID",
+                "@_Value": "&quot;localhost:61499&quot;"
+            },
+            "Attribute": [
+                {
+                    "@_Name": "Profile",
+                    "@_Type": "STRING",
+                    "@_Value": "HOLOBLOC",
+                    "@_Comment": "device profile"
+                },
+                {
+                    "@_Name": "Color",
+                    "@_Type": "STRING",
+                    "@_Value": "255,190,111",
+                    "@_Comment": "color"
+                }
+            ],
+            "Resource": {
+                "@_Name": "EMB_RES",
+                "@_Type": "EMB_RES",
+                "@_Comment": "",
+                "@_x": "0.0",
+                "@_y": "0.0",
+                "FBNetwork": {
+                    "FB": [
+                        {
+                            "@_Name": "E_SR_2",
+                            "@_Type": "E_SR",
+                            "@_Comment": "",
+                            "@_x": "3520.0",
+                            "@_y": "1626.6666666666667"
+                        },
+                        {
+                            "@_Name": "LED_RED",
+                            "@_Type": "QX",
+                            "@_Comment": "",
+                            "@_x": "5100.0",
+                            "@_y": "1373.3333333333335",
+                            "Parameter": {
+                                "@_Name": "QI",
+                                "@_Value": "1"
+                            }
+                        },
+                        {
+                            "@_Name": "Button",
+                            "@_Type": "IX",
+                            "@_Comment": "",
+                            "@_x": "893.3333333333334",
+                            "@_y": "1373.3333333333335",
+                            "Parameter": {
+                                "@_Name": "QI",
+                                "@_Value": "1"
+                            }
+                        },
+                        {
+                            "@_Name": "E_SWITCH_2",
+                            "@_Type": "E_SWITCH",
+                            "@_Comment": "",
+                            "@_x": "2400.0",
+                            "@_y": "1626.6666666666667"
+                        },
+                        {
+                            "@_Name": "Button_1",
+                            "@_Type": "IX",
+                            "@_Comment": "",
+                            "@_x": "666.6666666666667",
+                            "@_y": "1733.3333333333335",
+                            "Parameter": {
+                                "@_Name": "QI",
+                                "@_Value": "1"
+                            }
+                        },
+                        {
+                            "@_Name": "E_SR_3",
+                            "@_Type": "E_SR",
+                            "@_Comment": "",
+                            "@_x": "3293.3333333333335",
+                            "@_y": "1986.6666666666667"
+                        },
+                        {
+                            "@_Name": "LED_RED_1",
+                            "@_Type": "QX",
+                            "@_Comment": "",
+                            "@_x": "4873.333333333334",
+                            "@_y": "1733.3333333333335",
+                            "Parameter": {
+                                "@_Name": "QI",
+                                "@_Value": "1"
+                            }
+                        },
+                        {
+                            "@_Name": "E_SWITCH_3",
+                            "@_Type": "E_SWITCH",
+                            "@_Comment": "",
+                            "@_x": "2173.3333333333335",
+                            "@_y": "1986.6666666666667"
+                        }
+                    ],
+                    "EventConnections": {
+                        "Connection": [
+                            {
+                                "@_Source": "E_SR_2.EO",
+                                "@_Destination": "LED_RED.REQ",
+                                "@_Comment": "",
+                                "@_dx1": "360.0"
+                            },
+                            {
+                                "@_Source": "Button.INITO",
+                                "@_Destination": "LED_RED.INIT",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "Button.IND",
+                                "@_Destination": "E_SWITCH_2.EI",
+                                "@_Comment": "",
+                                "@_dx1": "360.0"
+                            },
+                            {
+                                "@_Source": "E_SWITCH_2.EO0",
+                                "@_Destination": "E_SR_2.S",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "E_SWITCH_2.EO1",
+                                "@_Destination": "E_SR_2.R",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "START.COLD",
+                                "@_Destination": "Button.INIT",
+                                "@_Comment": "",
+                                "@_dx1": "80.0",
+                                "@_dx2": "80.0",
+                                "@_dy": "486.6666666666667"
+                            },
+                            {
+                                "@_Source": "START.WARM",
+                                "@_Destination": "Button.INIT",
+                                "@_Comment": "",
+                                "@_dx1": "80.0",
+                                "@_dx2": "80.0",
+                                "@_dy": "433.33333333333337"
+                            },
+                            {
+                                "@_Source": "Button_1.INITO",
+                                "@_Destination": "LED_RED_1.INIT",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "E_SR_3.EO",
+                                "@_Destination": "LED_RED_1.REQ",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "Button_1.IND",
+                                "@_Destination": "E_SWITCH_3.EI",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "E_SWITCH_3.EO0",
+                                "@_Destination": "E_SR_3.S",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "E_SWITCH_3.EO1",
+                                "@_Destination": "E_SR_3.R",
+                                "@_Comment": ""
+                            }
+                        ]
+                    },
+                    "DataConnections": {
+                        "Connection": [
+                            {
+                                "@_Source": "E_SR_2.Q",
+                                "@_Destination": "LED_RED.OUT",
+                                "@_Comment": "",
+                                "@_dx1": "426.6666666666667"
+                            },
+                            {
+                                "@_Source": "E_SR_2.Q",
+                                "@_Destination": "E_SWITCH_2.G",
+                                "@_Comment": "",
+                                "@_dx1": "360.0",
+                                "@_dx2": "340.0",
+                                "@_dy": "166.66666666666669"
+                            },
+                            {
+                                "@_Source": "E_SR_3.Q",
+                                "@_Destination": "LED_RED_1.OUT",
+                                "@_Comment": ""
+                            },
+                            {
+                                "@_Source": "E_SR_3.Q",
+                                "@_Destination": "E_SWITCH_3.G",
+                                "@_Comment": ""
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "Mapping": [
+            {
+                "@_From": "AutoGenOpcUaApp.E_SR_2",
+                "@_To": "FORTE_PC.EMB_RES.E_SR_2"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.LED_RED",
+                "@_To": "FORTE_PC.EMB_RES.LED_RED"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.Button",
+                "@_To": "FORTE_PC.EMB_RES.Button"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.E_SWITCH_2",
+                "@_To": "FORTE_PC.EMB_RES.E_SWITCH_2"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.Button_1",
+                "@_To": "FORTE_PC.EMB_RES.Button_1"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.E_SR_3",
+                "@_To": "FORTE_PC.EMB_RES.E_SR_3"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.LED_RED_1",
+                "@_To": "FORTE_PC.EMB_RES.LED_RED_1"
+            },
+            {
+                "@_From": "AutoGenOpcUaApp.E_SWITCH_3",
+                "@_To": "FORTE_PC.EMB_RES.E_SWITCH_3"
+            }
+        ],
+        "Segment": {
+            "@_Name": "Ethernet",
+            "@_Type": "Ethernet",
+            "@_Comment": "",
+            "@_x": "3260.0",
+            "@_y": "586.6666666666667",
+            "@_dx1": "2000.0",
+            "Attribute": {
+                "@_Name": "Color",
+                "@_Type": "STRING",
+                "@_Value": "214,91,144",
+                "@_Comment": "color"
+            }
+        },
+        "Link": {
+            "@_SegmentName": "Ethernet",
+            "@_CommResource": "FORTE_PC",
+            "@_Comment": ""
+        }
+    }
+}
